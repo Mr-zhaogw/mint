@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/proxyApi': {
-        target: 'https://www.luckyyear.club',//开发环境
+        target: 'https://api.luckyyear.club',//开发环境
         changeOrigin: true,
         secure:true,
         pathRewrite: {
