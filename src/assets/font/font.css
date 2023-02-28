@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "BSBSC";
+    src: url('~@/assets/font/Brice Semi Bold Semi Expanded.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "oppoB";
+    src: url('~@/assets/font/OPPOSans-B.ttf');
+    font-style: normal;
+}
+@font-face {
+    font-family: "Turiismo";
+    src: url('~@/assets/font/Turismo CF-Bold.otf');
+    font-style: normal;
+}
