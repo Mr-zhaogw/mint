@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/mint',
       name: 'mint',
-      component: () => import('@/components/pages/mint')
+      component: () => import('@/components/pages/mint/index')
     }
   ]
 })

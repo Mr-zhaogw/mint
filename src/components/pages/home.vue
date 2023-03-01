@@ -96,7 +96,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>Q</span>:When is the reveal date?
             </div>
             <div class="a">
-              <span>A</span>:24 hours after sold out.
+              <span>A</span>:48 hours after sold out.
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:0rem 0 .01rem;"/></div>
           </div>
@@ -155,26 +155,15 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
         move.style.transform = "translateX("+ x +"px) translateY(" + y +"px)"
       })
      }
-    //  document.addEventListener('scroll',this.handleScroll)
    },
    methods: {
-    // handleScroll(){
-    //   // console.log(this.$refs.scroll.getBoundingClientRect().y);
-    //   // console.log(window.innerHeight);
-    //   this.currentScroll = window.pageYOffset //表示当前滚动的位置
-    //   if (this.currentScroll >= this.$refs.scroll.offsetTop - 600) {
-    //     this.show = true;
-    //   }
-    // }
-    // mousemove: function (event) {
-    //   console.log(event);
-      
-    //   },
+  
    },
  }
 </script>
 
 <style lang='scss' scoped>
+.home_page{
   .banner{
     background-color: #00528A;
     width:100%;
@@ -212,7 +201,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
     }
     .cat{
         position: absolute;
-        width:2.5rem;
+        width:3rem;
         top:calc(calc(4.585rem - 2.35rem) / 2);
         left:calc((100% - 3rem) / 2);
     }
@@ -359,9 +348,6 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
         transform: translate3d(0, -.05rem, 0);
       }
     }
-    // .line{
-    //   background-image: url();
-    // }
     .content{
       .left{
         float: left;
@@ -421,4 +407,5 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
       padding-bottom: 1rem;
     }
   }
+}
 </style>
