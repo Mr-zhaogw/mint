@@ -1,15 +1,14 @@
  <template>
   <div calss="mint_page" style="padding-top:.5rem">
     <div class="content_c">
-        <div class="btn" @click="connectWallet">
+        <div class="btn" @click="connectWallet" v-if="isConnectWallet">
             <img src="@/assets/mint/btn.png" />
         </div>
         <div class="text" v-if="isRequest && totalSupply > 0">
-            <div class="handle">
+            <div class="handle" v-if="currentPhase == 0 && inFrenList || currentPhase == 1 && inWhiteList || currentPhase == 2">
                 <img src="@/assets/mint/-.png" class="subtract icon" @click="hanlerNum(0)"/>
                 <span class="num">{{ num }}</span>
                 <img src="@/assets/mint/+.png" class="add icon" @click="hanlerNum(1)"/>
-                <!-- <span class="mint">MINT</span> -->
                 <div class="mintBtn" @click="buyMint">
                     <img :src="mintBtn" />
                 </div>
@@ -110,6 +109,8 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
        isLoading:false,
        isDialog:false,
        isSuccess:false,
+       frenListProof:[],
+       isConnectWallet:true
      }
    },
    computed: {
@@ -151,15 +152,18 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             const address = await signer.getAddress();
             this.ethereumAddress = address;
             axios.get(process.env.API_HOST + 'api?address=' + address).then(res =>{
-                // console.log(res);
+                console.log(res);
                 if(res.status == 200 && res.data.code == 200){
                     this.inFrenList = res.data.data.inFrenList;
                     this.inWhiteList = res.data.data.inWhiteList
-                    if(this.currentPhase == 1){
+                    if(this.currentPhase == 1 && res.data.data.whiteListProof){
                         this.whiteListProof = res.data.data.whiteListProof;
+                    }else if(this.currentPhase == 0 && res.data.data.frenListProof){
+                        this.frenListProof = res.data.data.frenListProof;
                     }
                     this.isLoading = false;
-                    this.showDialog()
+                    this.showDialog();
+                    this.isConnectWallet = false;
                 }
             });
         } else {
@@ -171,7 +175,10 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
     async getTreatyInfo() {
         this.isLoading = true;
         this.isRequest = false;
-        const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
+        // const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
+        // const rpc = "https://rpc.tenderly.co/fork/2e815368-a7a1-4b03-9b3c-0a5e59155c67";
+        const rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726";
+        const provider = new ethers.providers.JsonRpcProvider(rpc);
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
         const totalSupply = await contract.totalSupply();
         this.totalSupply = totalSupply;
@@ -179,7 +186,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         this.currentPhase = currentPhase;
         if(currentPhase == 0){
             this.num = 2;
-
+            this.mintPrice = 0;
         }else{
             this.num = 5;
             if(currentPhase == 1){
@@ -204,9 +211,14 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
             // const amount = ethers.utils.parseEther(this.num);
-            const amount  = (this.num * this.mintPrice).toString();
-            const transaction = await contract.whiteListMint(1,this.whiteListProof,{value:ethers.utils.parseEther(amount)});
-            
+            const amount  = ethers.utils.parseEther((this.num * this.mintPrice).toString());
+            if(this.currentPhase == 1){
+                var transaction = await contract.whiteListMint(1,this.whiteListProof,{value:amount});
+            }else if(this.currentPhase == 0){
+                var transaction = await contract.frenMint(this.frenListProof);
+            }else {
+                var transaction = await contract.publicMint(1,{value:amount});
+            }
             await transaction.wait();
             this.isLoading = false;
             this.isSuccess = true;

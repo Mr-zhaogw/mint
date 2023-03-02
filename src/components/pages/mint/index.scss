@@ -80,6 +80,7 @@
         top:1rem;
         left: 50%;
         margin-left: -2.64rem;
+        width:100%;
         .icon{
             width:.3rem;
             vertical-align: 0.09rem;
@@ -94,6 +95,9 @@
             font-family: 'Turiismo';
             font-size: .156rem;
             margin-top:-.13rem;
+            position: absolute;
+            width:100%;
+            top:1rem;
         }
         span{
             color:#F7B43B;
