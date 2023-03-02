@@ -11,7 +11,7 @@
                 <img src="@/assets/mint/+.png" class="add icon" @click="hanlerNum(1)"/>
                 <!-- <span class="mint">MINT</span> -->
                 <div class="mintBtn" @click="buyMint">
-                    <img src="@/assets/mint/mint.png" />
+                    <img :src="mintBtn" />
                 </div>
             </div>
             <div class="n">
@@ -26,7 +26,7 @@
         </div>
         <div class="dialog" v-else>
             <div v-if="isSuccess">
-                <img v-if="isSuccess" src="@/assets/mint/dialog5.png" class="d"/>
+                <img src="@/assets/mint/dialog5.png" class="d"/>
             </div>
             <div v-else-if="currentPhase == 0">
                 <img v-if="inFrenList" src="@/assets/mint/dialog1.png" class="d"/>
@@ -62,6 +62,7 @@
             </div>
             <img src="@/assets/mint/tiggy.gif" class="tiggy"/>
         </div>
+
         <div class="loading_" v-if="isLoading">
             <div id="preloader_4">
                 <span></span>
@@ -92,6 +93,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
   */
    data() {
      return {
+       mintBtn:require('@/assets/mint/mint.png'),
        newsList:[{title:'LUCKY YEAR OF TIGER',},{title:'LUCKY YEAR OF TIGER',},{title:'LUCKY YEAR OF TIGER',}],
        newsList1:[{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'}],
        num:0,
@@ -129,7 +131,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
      
    },
 
-   mounted() {
+   created() {
     this.getTreatyInfo();
    },
 
@@ -149,7 +151,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             const address = await signer.getAddress();
             this.ethereumAddress = address;
             axios.get(process.env.API_HOST + 'api?address=' + address).then(res =>{
-                console.log(res);
+                // console.log(res);
                 if(res.status == 200 && res.data.code == 200){
                     this.inFrenList = res.data.data.inFrenList;
                     this.inWhiteList = res.data.data.inWhiteList

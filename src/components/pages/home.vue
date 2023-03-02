@@ -68,7 +68,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>Q</span>:How many traits are available in LYOT?
             </div>
             <div class="a">
-              <span>A</span>:311.
+              <span>A</span>:300.
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:0rem 0 .01rem;"/></div>
           </div>
