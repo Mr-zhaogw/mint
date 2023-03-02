@@ -4,7 +4,7 @@
         <div class="btn" @click="connectWallet">
             <img src="@/assets/mint/btn.png" />
         </div>
-        <div class="text" v-if="totalSupply > 0">
+        <div class="text" v-if="isRequest && totalSupply > 0">
             <div class="handle">
                 <img src="@/assets/mint/-.png" class="subtract icon" @click="hanlerNum(0)"/>
                 <span class="num">{{ num }}</span>
@@ -18,7 +18,7 @@
                 MINT PRICE:{{mintPrice}}ETH &nbsp;&nbsp; {{totalSupply}}/2022MINTED
             </div>
         </div>
-        <div v-else class="text soldout">
+        <div v-if="isRequest && totalSupply == 0" class="text soldout">
             SOLD OUT!
         </div>
         <div class="qp" v-if="!isDialog">
@@ -130,7 +130,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
    created() {
      
    },
-
+   
    created() {
     this.getTreatyInfo();
    },
@@ -169,6 +169,8 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
     },
     
     async getTreatyInfo() {
+        this.isLoading = true;
+        this.isRequest = false;
         const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
         const totalSupply = await contract.totalSupply();
@@ -186,6 +188,8 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
                 this.mintPrice = ethers.utils.formatEther(await contract.publicPrice())
             }
         }
+        this.isLoading = false;
+        this.isRequest = true;
     },
 
     async buyMint(){
