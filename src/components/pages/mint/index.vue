@@ -171,7 +171,9 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
     async getTreatyInfo() {
         this.isLoading = true;
         this.isRequest = false;
-        const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
+        // const rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726"
+        const rpc = "https://rpc.tenderly.co/fork/2e815368-a7a1-4b03-9b3c-0a5e59155c67"
+        const provider = new ethers.providers.JsonRpcProvider(rpc);
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
         const totalSupply = await contract.totalSupply();
         this.totalSupply = totalSupply;
