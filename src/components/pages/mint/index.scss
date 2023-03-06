@@ -175,7 +175,7 @@
     }
     .bottom{
         width:100%;
-        height: 1.1rem;
+        height: 1rem;
         background-color: #E7DBCD;
         position: absolute;
         bottom: 0;
@@ -210,15 +210,19 @@
                 overflow: hidden;
                 width:100%;
                 height: .3rem;
+                line-height: .3rem;
             }
             &.container_big{
-                height: .55rem;
+                height: .4rem;
                 overflow: hidden;
+                line-height: .4rem;
                 width:100%;
+                margin:.05rem auto .02rem;
                 .seamless-warp{
                     width: 100%;
                     overflow: hidden;
-                    height: .55rem;
+                    height: .4rem;
+                    line-height: .4rem;
                     ul.item{
                         width:100%;
                         li{

@@ -265,7 +265,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
       width:calc(100% - 6.5rem);
       position: relative;
       .zs{
-        width:2rem;
+        width:1.85rem;
         position: absolute;
       }
       .zs1{
@@ -275,14 +275,14 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
 	      animation-fill-mode: forwards;
       }
       .zs2{
-        top:1.68rem;
+        top:1.58rem;
         right: 0;
         animation: fade-two ease 2s;
 	      animation-fill-mode: forwards;
       }
       .zs3{
-        top:3.2rem;
-        left:.37rem;
+        top:2.9rem;
+        left:.45rem;
         animation: fade-three ease 2s;
 	      animation-fill-mode: forwards;
       }
@@ -366,7 +366,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
         div{
           color:#000;
           font-family: 'oppoB';
-          font-size: .12rem;
+          font-size: .115rem;
           margin-bottom: .05rem;
           line-height: .18rem;
           &.line{
@@ -392,7 +392,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
     .tip{
       background:#00528A;
       font-family: 'oppoB';
-      font-size: .19rem;
+      font-size: .185rem;
       padding:.08rem .2rem;
       text-align: center;
       color:rgba(255,255,255,.5);
