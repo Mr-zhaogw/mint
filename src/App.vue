@@ -37,5 +37,29 @@ export default {
   li{
     list-style: none;
   }
+  .swal2-popup{
+    width:3rem;
+  }
   .page_{margin-top:.5rem}
+  .swal2-title{
+    font-size: .12rem;
+    padding:.2rem 1em 0;
+  }
+  .swal2-actions{
+    margin:.3rem auto 0;
+  }
+  .swal2-styled{
+    padding:.12rem .35rem;
+    outline: none;
+  }
+  .swal2-styled.swal2-confirm{
+    font-size: .15rem;
+    background-color: #00528A;
+  }
+  .swal2-popup{
+    padding:0 0 .2rem;
+  }
+  .swal2-styled.swal2-confirm:focus{
+    box-shadow: none;
+  }
 </style>

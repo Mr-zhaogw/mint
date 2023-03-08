@@ -5,7 +5,7 @@
             <img src="@/assets/mint/btn.png" />
         </div>
         <div class="text" v-if="isRequest && totalSupply > 0">
-            <div class="handle" v-if="currentPhase == 0 && inFrenList || currentPhase == 1 && inWhiteList || currentPhase == 2">
+            <div class="handle" v-if="!isConnectWallet && ((currentPhase == 0 && inFrenList) || (currentPhase == 1 && inWhiteList) || currentPhase == 2)">
                 <img src="@/assets/mint/-.png" class="subtract icon" @click="hanlerNum(0)"/>
                 <span class="num">{{ num }}</span>
                 <img src="@/assets/mint/+.png" class="add icon" @click="hanlerNum(1)"/>
@@ -81,6 +81,7 @@ import axios from 'axios'
 import { contractAddress, contractAbi} from '@/assets/js/util'
 import './index.scss'
 import vueSeamlessScroll from 'vue-seamless-scroll'
+import { parse } from '@ethersproject/transactions';
 
  export default {
    name:'',
@@ -110,7 +111,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
        isDialog:false,
        isSuccess:false,
        frenListProof:[],
-       isConnectWallet:true
+       isConnectWallet:false
      }
    },
    computed: {
@@ -133,7 +134,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
    },
    
    created() {
-    this.getTreatyInfo();
+    this.init();
    },
 
    methods: {
@@ -143,6 +144,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             this.isDialog = false;
         },5000)
     },
+
     async connectWallet(){
         this.isLoading = true;
         if (window.ethereum) {
@@ -152,7 +154,6 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             const address = await signer.getAddress();
             this.ethereumAddress = address;
             axios.get(process.env.API_HOST + 'api?address=' + address).then(res =>{
-                console.log(res);
                 if(res.status == 200 && res.data.code == 200){
                     this.inFrenList = res.data.data.inFrenList;
                     this.inWhiteList = res.data.data.inWhiteList
@@ -168,49 +169,82 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             });
         } else {
             this.isLoading = false;
-            console.log('MetaMask not detected');
+            this.$swal('MetaMask not detected')
         }
     },
     
-    async getTreatyInfo() {
-        this.isLoading = true;
+    async init() {
         this.isRequest = false;
-        // const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
-        // const rpc = "https://rpc.tenderly.co/fork/2e815368-a7a1-4b03-9b3c-0a5e59155c67";
+        if(window.ethereum === 'undefined'){
+            this.$swal('请安装 MetaMask 扩展程序');
+            return;
+        }
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length === 0) {
+            this.isConnectWallet = true;
+        }
+
+        const networkId = await window.ethereum.request({ method: 'net_version' });
+        // this.$swal('如果连接到错误的网络，提示用户切换网络')
+        // 检查是否连接到正确的网络
+        if (networkId !== '1') {
+            // 如果连接到错误的网络，提示用户切换网络
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0x1' }],
+                });
+                this.getTreatyInfo();
+            } catch (error) {
+                this.$swal('请手动切换到以太坊主网')
+            }
+        }else{
+            this.getTreatyInfo();
+        }   
+    },
+
+    getTreatyInfo(){
         const rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726";
         const provider = new ethers.providers.JsonRpcProvider(rpc);
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-        const totalSupply = await contract.totalSupply();
-        this.totalSupply = totalSupply;
-        const currentPhase = await contract.currentStage(); //合约当前阶段
-        this.currentPhase = currentPhase;
-        if(currentPhase == 0){
-            this.num = 2;
-            this.mintPrice = 0;
-        }else{
-            this.num = 5;
-            if(currentPhase == 1){
-                this.mintPrice = ethers.utils.formatEther(await contract.whiteListPrice())
+        const promises = [
+                contract.totalSupply(),
+                contract.currentStage(),
+                contract.whiteListPrice(),
+                contract.publicPrice()
+        ]
+        this.isLoading = true;
+        Promise.all(promises).then(results => {
+            this.totalSupply = results[0];
+            const currentPhase = results[1];
+            this.currentPhase = currentPhase;
+            if(currentPhase == 0){
+                this.num = 2;
+                this.mintPrice = 0;
             }else{
-                this.mintPrice = ethers.utils.formatEther(await contract.publicPrice())
+                this.num = 5;
+                if(currentPhase == 1){
+                    this.mintPrice = ethers.utils.formatEther(results[2])
+                }else{
+                    this.mintPrice = ethers.utils.formatEther(results[3])
+                }
             }
-        }
-        this.isLoading = false;
-        this.isRequest = true;
+            this.isLoading = false;
+            this.isRequest = true;
+        })
+        .catch(error => {
+            this.isLoading = false;
+            this.$swal(error.message || error)
+        }) 
     },
 
     async buyMint(){
-        // const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
-        // const provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726');
-        // const wallet = new ethers.Wallet(this.ethereumAddress, provider);
         this.isLoading = true;
         try {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             await window.ethereum.enable(); // Request user's permission to access their Metamask account
-            // Set up signer with the connected Metamask account
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-            // const amount = ethers.utils.parseEther(this.num);
             const amount  = ethers.utils.parseEther((this.num * this.mintPrice).toString());
             if(this.currentPhase == 1){
                 var transaction = await contract.whiteListMint(1,this.whiteListProof,{value:amount});
@@ -225,6 +259,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             this.showDialog();
         } catch (error) {
             this.isLoading = false;
+            this.$swal(error.message || error)
         }
         
     },
