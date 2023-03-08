@@ -179,12 +179,12 @@ import { parse } from '@ethersproject/transactions';
             this.$swal('请安装 MetaMask 扩展程序');
             return;
         }
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         if (accounts.length === 0) {
             this.isConnectWallet = true;
         }
 
-        const networkId = await window.ethereum.request({ method: 'net_version' });
+        let networkId = await window.ethereum.request({ method: 'net_version' });
         // this.$swal('如果连接到错误的网络，提示用户切换网络')
         // 检查是否连接到正确的网络
         if (networkId !== '1') {
@@ -204,10 +204,10 @@ import { parse } from '@ethersproject/transactions';
     },
 
     getTreatyInfo(){
-        const rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726";
-        const provider = new ethers.providers.JsonRpcProvider(rpc);
-        const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-        const promises = [
+        let rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726";
+        let provider = new ethers.providers.JsonRpcProvider(rpc);
+        let contract = new ethers.Contract(contractAddress, contractAbi, provider);
+        let promises = [
                 contract.totalSupply(),
                 contract.currentStage(),
                 contract.whiteListPrice(),
@@ -216,7 +216,7 @@ import { parse } from '@ethersproject/transactions';
         this.isLoading = true;
         Promise.all(promises).then(results => {
             this.totalSupply = results[0];
-            const currentPhase = results[1];
+            let currentPhase = results[1];
             this.currentPhase = currentPhase;
             if(currentPhase == 0){
                 this.num = 2;
@@ -241,11 +241,11 @@ import { parse } from '@ethersproject/transactions';
     async buyMint(){
         this.isLoading = true;
         try {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            let provider = new ethers.providers.Web3Provider(window.ethereum);
             await window.ethereum.enable(); // Request user's permission to access their Metamask account
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-            const amount  = ethers.utils.parseEther((this.num * this.mintPrice).toString());
+            let signer = provider.getSigner();
+            let contract = new ethers.Contract(contractAddress, contractAbi, signer);
+            let amount  = ethers.utils.parseEther((this.num * this.mintPrice).toString());
             if(this.currentPhase == 1){
                 var transaction = await contract.whiteListMint(1,this.whiteListProof,{value:amount});
             }else if(this.currentPhase == 0){
