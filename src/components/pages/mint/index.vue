@@ -186,7 +186,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         const networkId = await window.ethereum.request({ method: 'net_version' });
         // this.$swal('如果连接到错误的网络，提示用户切换网络')
         // 检查是否连接到正确的网络
-        if (networkId !== '1') {
+        if (networkId !== '5') {
             // 如果连接到错误的网络，提示用户切换网络
             try {
                 await window.ethereum.request({
@@ -195,7 +195,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
                 });
                 this.getTreatyInfo();
             } catch (error) {
-                this.$swal('请手动切换到以太坊主网')
+                this.$swal('Please switch to the mainnet')
             }
         }else{
             this.getTreatyInfo();
@@ -206,7 +206,6 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         const rpc = "https://goerli.infura.io/v3/0260453284fb4be8abb9815c5c116726";
         const provider = new ethers.providers.JsonRpcProvider(rpc);
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-        console.log(contractAddress);
         const promises = [
                 contract.totalSupply(),
                 contract.currentStage(),
@@ -259,7 +258,8 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             this.showDialog();
         } catch (error) {
             this.isLoading = false;
-            this.$swal(error.message || error)
+            console.log(error.message);
+            this.$swal('insufficient funds')
         }
         
     },

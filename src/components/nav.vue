@@ -48,7 +48,7 @@
         if(index == 0){
           this.$router.push({path:'/mint'});
         }else if(index == 1){
-          this.$router.push({path:'/'});
+          this.$router.push({path:'/'},() => {});
           this.$nextTick(() =>{
             document.querySelector(".part2").scrollIntoView({
               behavior: "smooth",
@@ -56,7 +56,7 @@
             });
           })
         }else if(index == 2){
-          this.$router.push({path:'/'});
+          this.$router.push({path:'/'},() => {});
           this.$nextTick(() =>{
             document.querySelector(".part3").scrollIntoView({
               behavior: "smooth",
@@ -78,7 +78,7 @@
             block:"start" ,
           });
         }
-        this.$router.push({path:path});
+        this.$router.push({path:path},() => {});
       }
     }
    },

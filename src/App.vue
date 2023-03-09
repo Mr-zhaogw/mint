@@ -38,28 +38,28 @@ export default {
     list-style: none;
   }
   .swal2-popup{
-    width:3rem;
+    width:3rem !important;
   }
   .page_{margin-top:.5rem}
   .swal2-title{
-    font-size: .12rem;
-    padding:.2rem 1em 0;
+    font-size: .12rem !important;
+    padding:.2rem 1em 0 !important;
   }
   .swal2-actions{
-    margin:.3rem auto 0;
+    margin:.3rem auto 0 !important;
   }
   .swal2-styled{
-    padding:.12rem .35rem;
-    outline: none;
+    padding:.12rem .35rem !important;
+    outline: none !important;
   }
   .swal2-styled.swal2-confirm{
-    font-size: .15rem;
-    background-color: #00528A;
+    font-size: .15rem !important;
+    background-color: #00528A !important;
   }
   .swal2-popup{
-    padding:0 0 .2rem;
+    padding:0 0 .2rem !important;
   }
   .swal2-styled.swal2-confirm:focus{
-    box-shadow: none;
+    box-shadow: none !important;
   }
 </style>
