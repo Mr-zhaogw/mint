@@ -5,8 +5,8 @@
       <li v-for="(item, index) in navList" @click="goNav(index)">{{item}}</li>
     </ul>
     <div class="icon_box">
-      <a href=""></a><img src="@/assets/logo1.png" class="icon1 icon"/>/a>
-      <a href=""></a><img src="@/assets/logo2.png" class="icon2 icon"/>/a>
+      <a href="javascript:"><img src="@/assets/logo1.png" class="icon1 icon"/></a>
+      <a href="javascript:"><img src="@/assets/logo2.png" class="icon2 icon"/></a>
       <a href="https://twitter.com/LYOTNFT"><img src="@/assets/logo3.png" class="icon3 icon"/></a>
     </div>
   </div>
@@ -26,7 +26,6 @@
    data() {
      return {
        navList:['MINT','ABOUT','Q&A']
-      //  navList:[,'ABOUT','Q&A']
      }
    },
    computed: {},

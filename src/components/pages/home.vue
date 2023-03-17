@@ -400,7 +400,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
       text-align: center;
       color:rgba(255,255,255,.5);
       border-radius: 3px;
-      margin:.2rem 0 .8rem;
+      margin:.2rem 0 .4rem;
     }
     .message{
       color:#000;
