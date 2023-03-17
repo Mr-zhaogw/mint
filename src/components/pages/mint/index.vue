@@ -146,7 +146,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
     },
 
     getInfo(){
-        axios.get(process.env.API_HOST + 'api?address=' + this.ethereumAddress).then(res =>{
+        axios.get(process.env.API_HOST + 'api/?address=' + this.ethereumAddress).then(res =>{
             if(res.status == 200 && res.data.code == 200){
                 this.inFrenList = res.data.data.inFrenList;
                 this.inWhiteList = res.data.data.inWhiteList
