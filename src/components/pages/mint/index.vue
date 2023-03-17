@@ -92,6 +92,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
   */
    data() {
      return {
+       activeNetwork:5,
        mintBtn:require('@/assets/mint/mint.png'),
        newsList:[{title:'LUCKY YEAR OF TIGER',},{title:'LUCKY YEAR OF TIGER',},{title:'LUCKY YEAR OF TIGER',}],
        newsList1:[{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'},{title:'LYOT LYOT LYOT LYOT'}],
@@ -192,12 +193,12 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         const networkId = await window.ethereum.request({ method: 'net_version' });
         // this.$swal('如果连接到错误的网络，提示用户切换网络')
         // 检查是否连接到正确的网络
-        if (networkId !== '5') {
+        if (networkId !== this.activeNetwork) {
             // 如果连接到错误的网络，提示用户切换网络
             try {
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0x1' }],
+                    params: [{ chainId: '0x5'}],
                 });
                 this.getTreatyInfo();
             } catch (error) {
