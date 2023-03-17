@@ -5,8 +5,8 @@
       <li v-for="(item, index) in navList" @click="goNav(index)">{{item}}</li>
     </ul>
     <div class="icon_box">
-      <img src="@/assets/logo1.png" class="icon1 icon"/>
-      <img src="@/assets/logo2.png" class="icon2 icon"/>
+      <a href=""></a><img src="@/assets/logo1.png" class="icon1 icon"/>/a>
+      <a href=""></a><img src="@/assets/logo2.png" class="icon2 icon"/>/a>
       <a href="https://twitter.com/LYOTNFT"><img src="@/assets/logo3.png" class="icon3 icon"/></a>
     </div>
   </div>
@@ -46,7 +46,7 @@
       let path =''
       if(pathName == 'mint'){
         if(index == 0){
-          this.$router.push({path:'/mint'});
+          // this.$router.push({path:'/mint'});
         }else if(index == 1){
           this.$router.push({path:'/'},() => {});
           this.$nextTick(() =>{
@@ -66,7 +66,7 @@
         }
       }else{
         if(index == 0){
-          path = '/mint'
+          // path = '/mint'
         }else if(index == 1){
           document.querySelector(".part2").scrollIntoView({
             behavior: "smooth",

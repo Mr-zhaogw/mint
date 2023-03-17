@@ -13,11 +13,11 @@ export default new Router({
       name: 'home',
       component: () => import('@/components/pages/home')
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/components/pages/about')
-    },
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   component: () => import('@/components/pages/about')
+    // },
     {
       path: '/mint',
       name: 'mint',

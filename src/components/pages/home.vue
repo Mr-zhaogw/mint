@@ -121,7 +121,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have licensed their pre-existing series of artworks for use.<br>
             </div>
           </div> -->
-          <div class="tip">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>business@luckyyear.club</a></div>
+          <div class="tip">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas", please send a cooperation email with a link to your work to <a>business@luckyyear.club</a></div>
           <!-- <div class="message">*If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a style="color:#00528A">iris@planagroup.com</a></div> -->
           <!-- <div class="message" style="color:#00528A">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>iris@planagroup.com</a></div> -->
       </div>
