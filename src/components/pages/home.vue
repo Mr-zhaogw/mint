@@ -33,11 +33,13 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>Q</span>:What benefits come with holding?
             </div>
             <div class="a">
-              <span>A</span>:·Exclusive MINT benefits for the "Year of the Rabbit" project<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·Digital art airdrops from partner artists<br>
+              <span>A</span>:Just an art-driven project featuring adorable tigers and oriental 
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elements, stay tuned on Twitter for future updates and plans.
+<br>
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·Digital art airdrops from partner artists<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·A limited number of physical artefacts to redeem<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Further details will be announced soon after the MINT.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Further details will be announced soon after the MINT. -->
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:.1rem 0 .1rem;"/></div>
           </div>
@@ -68,7 +70,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>Q</span>:How many traits are available in LYOT?
             </div>
             <div class="a">
-              <span>A</span>:300.
+              <span>A</span>:800+
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:0rem 0 .01rem;"/></div>
           </div>
@@ -110,7 +112,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
           </div>
         </div>
         <div class="line" style="margin:.05rem 0 .07rem"><img src="@/assets/line3.jpg" style="width:100%;margin:.1rem 0"/></div>
-        <div class="box">
+        <!-- <div class="box">
             <div class="q">
               <span>Q</span>:How many artists are signed?
             </div>
@@ -118,9 +120,10 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>A</span>:We have signed three artists so far. One is experienced in serving game industry clients and the other two are highly stylized tattoo artists,who<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have licensed their pre-existing series of artworks for use.<br>
             </div>
-          </div>
-          <div class="tip">Holding is just the beginning,all Phase 1 royalties will be used for Phase 2 and future plans.</div>
-          <div class="message">*If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a style="color:#00528A">iris@planagroup.com</a></div>
+          </div> -->
+          <div class="tip">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>iris@planagroup.com</a></div>
+          <!-- <div class="message">*If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a style="color:#00528A">iris@planagroup.com</a></div> -->
+          <!-- <div class="message" style="color:#00528A">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>iris@planagroup.com</a></div> -->
       </div>
     </div>
   </div>
@@ -397,13 +400,13 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
       text-align: center;
       color:rgba(255,255,255,.5);
       border-radius: 3px;
-      margin:.2rem 0 .07rem;
+      margin:.2rem 0 .8rem;
     }
     .message{
       color:#000;
       font-family: 'oppoB';
       font-size: .11rem;
-      padding-left: .2rem;
+      // padding-left: .2rem;
       padding-bottom: 1rem;
     }
   }
