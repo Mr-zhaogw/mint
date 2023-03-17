@@ -25,7 +25,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
     </div>
     <div class="part3" ref="Q&A">
       <div class="title"><span>Q</span><span>&</span><span>A</span></div>
-      <div class="line" style="margin:0rem 0 .15rem"><img src="@/assets/line3.jpg" style="width:100%"/></div>
+      <div class="line" style="margin:0rem 0 .2rem"><img src="@/assets/line3.jpg" style="width:100%"/></div>
       <div class="content fn-clear">
         <div class="left">
           <div class="box">
@@ -41,7 +41,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Further details will be announced soon after the MINT. -->
             </div>
-            <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:.1rem 0 .1rem;"/></div>
+            <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:.19rem 0 .19rem;"/></div>
           </div>
           <div class="box">
             <div class="q">
@@ -51,7 +51,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>A</span>:The public mint price is 0.022 ETH, and whitelist participants<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will receive a discounted price.<br>
             </div>
-            <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:.1rem 0 .1rem;"/></div>
+            <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:.2rem 0 .2rem;"/></div>
           </div>
           <div class="box">
             <div class="q">
@@ -70,7 +70,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               <span>Q</span>:How many traits are available in LYOT?
             </div>
             <div class="a">
-              <span>A</span>:800+
+              <span>A</span>:750+
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:0rem 0 .01rem;"/></div>
           </div>
@@ -85,11 +85,11 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
           </div>
           <div class="box">
             <div class="q">
-              <span>Q</span>:What's the time for mint?
+              <span>Q</span>:What's the time for minting?
             </div>
             <div class="a">
-              <span>A</span>:Stay updated by following us on <a href="https://twitter.com/LYOTNFT" style="color:#00528A">Twitter</a> for the latest<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;announcements.<br>
+              <span>A</span>:Following us on <a href="https://twitter.com/LYOTNFT" style="color:#00528A">Twitter</a> for the latest 
+              announcements.<br>
             </div>
             <div class="line"><img src="@/assets/line1.jpg" style="width:100%;margin:0rem 0 .01rem;"/></div>
           </div>
@@ -104,7 +104,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
           </div>
           <div class="box">
             <div class="q">
-              <span>Q</span>:Is it on Ethereum Mainnet (ERC-20)?
+              <span>Q</span>:Is it on Ethereum Mainnet?
             </div>
             <div class="a">
               <span>A</span>:Yes.
@@ -121,7 +121,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have licensed their pre-existing series of artworks for use.<br>
             </div>
           </div> -->
-          <div class="tip">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>iris@planagroup.com</a></div>
+          <div class="tip">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>business@luckyyear.club</a></div>
           <!-- <div class="message">*If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a style="color:#00528A">iris@planagroup.com</a></div> -->
           <!-- <div class="message" style="color:#00528A">If you are an artist interested in East Asian cultural themes such as the "Classic of Mountains and Seas," please send a cooperation email with a link to your work to <a>iris@planagroup.com</a></div> -->
       </div>
@@ -395,7 +395,7 @@ Our goal is to introduce more physically-made, high-quality art into the cryptoc
     .tip{
       background:#00528A;
       font-family: 'oppoB';
-      font-size: .185rem;
+      font-size: .175rem;
       padding:.08rem .2rem;
       text-align: center;
       color:rgba(255,255,255,.5);

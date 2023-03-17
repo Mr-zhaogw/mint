@@ -144,6 +144,23 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         },5000)
     },
 
+    getInfo(){
+        axios.get(process.env.API_HOST + 'api?address=' + this.ethereumAddress).then(res =>{
+            if(res.status == 200 && res.data.code == 200){
+                this.inFrenList = res.data.data.inFrenList;
+                this.inWhiteList = res.data.data.inWhiteList
+                if(this.currentPhase == 1 && res.data.data.whiteListProof){
+                    this.whiteListProof = res.data.data.whiteListProof;
+                }else if(this.currentPhase == 0 && res.data.data.frenListProof){
+                    this.frenListProof = res.data.data.frenListProof;
+                }
+                this.isLoading = false;
+                this.showDialog();
+                this.isConnectWallet = false;
+            }
+        });
+    },
+
     async connectWallet(){
         this.isLoading = true;
         if (window.ethereum) {
@@ -152,20 +169,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             const signer = provider.getSigner();
             const address = await signer.getAddress();
             this.ethereumAddress = address;
-            axios.get(process.env.API_HOST + 'api?address=' + address).then(res =>{
-                if(res.status == 200 && res.data.code == 200){
-                    this.inFrenList = res.data.data.inFrenList;
-                    this.inWhiteList = res.data.data.inWhiteList
-                    if(this.currentPhase == 1 && res.data.data.whiteListProof){
-                        this.whiteListProof = res.data.data.whiteListProof;
-                    }else if(this.currentPhase == 0 && res.data.data.frenListProof){
-                        this.frenListProof = res.data.data.frenListProof;
-                    }
-                    this.isLoading = false;
-                    this.showDialog();
-                    this.isConnectWallet = false;
-                }
-            });
+            this.getInfo(address);
         } else {
             this.isLoading = false;
             this.$swal('MetaMask not detected')
@@ -181,6 +185,8 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         if (accounts.length === 0) {
             this.isConnectWallet = true;
+        }else{
+            this.ethereumAddress = accounts[0];
         }
 
         const networkId = await window.ethereum.request({ method: 'net_version' });
@@ -217,6 +223,7 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             this.totalSupply = results[0];
             const currentPhase = results[1];
             this.currentPhase = currentPhase;
+            this.getInfo(this.ethereumAddress);
             if(currentPhase == 0){
                 this.num = 2;
                 this.mintPrice = 0;
@@ -244,22 +251,22 @@ import vueSeamlessScroll from 'vue-seamless-scroll'
             await window.ethereum.enable(); // Request user's permission to access their Metamask account
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-            const amount  = ethers.utils.parseEther((this.num * this.mintPrice).toString());
+            const amount = ethers.utils.parseEther((this.num * this.mintPrice).toString());
             if(this.currentPhase == 1){
-                var transaction = await contract.whiteListMint(1,this.whiteListProof,{value:amount});
+                var transaction = await contract.whiteListMint(this.num,this.whiteListProof,{value:amount});
             }else if(this.currentPhase == 0){
                 var transaction = await contract.frenMint(this.frenListProof);
             }else {
-                var transaction = await contract.publicMint(1,{value:amount});
+                var transaction = await contract.publicMint(this.num,{value:amount});
             }
             await transaction.wait();
             this.isLoading = false;
             this.isSuccess = true;
+            this.totalSupply = await contract.totalSupply();
             this.showDialog();
         } catch (error) {
             this.isLoading = false;
-            console.log(error.message);
-            this.$swal('insufficient funds')
+            this.$swal('Transaction Failure')
         }
         
     },
